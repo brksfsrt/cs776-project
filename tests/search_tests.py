@@ -19,20 +19,20 @@ class TestSearchFunctions(unittest.TestCase):
         expected_index = random.randint(0, self.array_size)
         key = self.test_list.lst[expected_index]
 
-        returned_index = search(self.test_list, self.array_size, key, SearchStrategy.BINARY)
+        returned_index = search(self.test_list, self.array_size, 0, key, SearchStrategy.BINARY)
         self.assertEqual(returned_index, expected_index)
 
         expected_index = self.array_size - 1
         key = self.test_list.lst[expected_index]
 
-        returned_index = search(self.test_list, self.array_size, key, SearchStrategy.BINARY)
+        returned_index = search(self.test_list, self.array_size, 0, key, SearchStrategy.BINARY)
         self.assertEqual(returned_index, expected_index)
 
     def test_linear_search(self):
         expected_index = random.randint(0, self.array_size)
         key = self.test_list.lst[expected_index]
 
-        returned_index = search(self.test_list, self.array_size, key, SearchStrategy.LINEAR)
+        returned_index = search(self.test_list, self.array_size, 0, key, SearchStrategy.LINEAR)
 
         self.assertEqual(returned_index, expected_index)
 
