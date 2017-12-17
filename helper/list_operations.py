@@ -8,9 +8,20 @@ def equal(list_obj1, list_obj2):
     return collections.Counter(list_obj1.lst) == collections.Counter(list_obj2.lst)
 
 
-# TODO: implement intersect method
-def intersect(list_obj1, list_obj2):
-    pass
+def binary_intersect(list_obj1, list_obj2):
+    ret_list = []
+    small_list = list_obj2 if len(list_obj1.lst) > len(list_obj2.lst) else list_obj1
+    big_list = list_obj1 if len(list_obj1.lst) > len(list_obj2.lst) else list_obj2
+
+    x = small_list.succ()
+
+    while x != -1:
+        y = big_list.f_search(x, int(len(big_list.lst) / len(small_list.lst)))
+        if x == big_list.lst[y]:
+            ret_list.append(x)
+        x = small_list.succ()
+
+    return List(ret_list, small_list.word + " and " + big_list.word)
 
 
 def diff(list_obj1, list_obj2):
@@ -26,5 +37,3 @@ def split(list_obj, x):
 
     list1, list2 = list_obj.lst[:index], list_obj.lst[index:]
     return List(list1), List(list2)
-
-

@@ -11,6 +11,7 @@ class List:
     def succ(self):
         self.current_position += 1
         self.size -= 1
+        return self.lst[self.current_position - 1] if self.current_position <= len(self.lst) else -1
 
     def pred(self):
         if self.current_position != 0 and self.size != 0:
@@ -35,8 +36,8 @@ class List:
         self.current_position += r
         self.size -= r
 
-    # TODO: implement f_search method
     def f_search(self, key, golomb_parameter):
+        init_current_position = self.current_position
         position = self.current_position + golomb_parameter
         while position < len(self.lst) and self.lst[position] < key:
             self.current_position = position
@@ -47,10 +48,12 @@ class List:
 
         offset = search(self, position, self.current_position, key, SearchStrategy.BINARY)
 
-        if offset == len(self.lst):
+        if offset == position:
             self.current_position = position
+            self.size -= self.current_position - init_current_position
         else:
             self.current_position = offset
+            self.size -= self.current_position - init_current_position
 
         if self.current_position > len(self.lst):
             return -1

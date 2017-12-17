@@ -8,16 +8,18 @@ class SearchStrategy(Enum):
 
 def binary_search_helper(list_obj, end, start, key):
     if start > end:
-        return -1
+        return end
 
-    middle = int((end + start) / 2)
-
-    if list_obj[middle] == key:
-        return middle
-    elif list_obj[middle] > key:
-        return binary_search_helper(list_obj, middle - 1, start, key)
     else:
-        return binary_search_helper(list_obj, end, middle + 1, key)
+        middle = int((end + start) / 2)
+
+        if list_obj[middle] == key:
+            return middle
+        elif list_obj[middle] > key:
+            return binary_search_helper(list_obj, middle - 1, start, key)
+
+        else:
+            return binary_search_helper(list_obj, end, middle + 1, key)
 
 
 def binary_search(list_obj, end, start, key):
